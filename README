@@ -1,4 +1,4 @@
-hostname = www.zhihu.com,api.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,103.41.167.236,103.41.167.234,103.41.167.235,103.41.167.226, m*.amap.com，ditu.amap.com，www.youtube.com
+hostname = www.zhihu.com,api.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,103.41.167.236,103.41.167.234,103.41.167.235,103.41.167.226
 # 知乎去广告
 ^https?:\/\/api\.zhihu\.com\/people\/ url script-response-body https://gist.githubusercontent.com/blackmatrix7/2e550ebf28ca60d620654e394ec47e0b/raw/zhihu.js
 ^https?:\/\/api\.zhihu\.com\/(moments|topstory)(\/|\?)?(recommend|action=|feed_type=)(?!\/people) url script-response-body https://gist.githubusercontent.com/blackmatrix7/2e550ebf28ca60d620654e394ec47e0b/raw/zhihu.js
@@ -27,18 +27,3 @@ hostname = www.zhihu.com,api.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,10
 ^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config url reject-200
 ^https?:\/\/api\.zhihu\.com\/people\/self\/new_user_card url reject-200
 ^https?:\/\/api\.zhihu\.com\/moments\/tab_v2 url reject-dict
-# > 高德地图
-^https?+:\/\/m\d\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\/ url reject-200
-^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ url reject
-^https?:\/\/optimus-ads\.amap\.com\/uploadimg\/ url reject
-# > 油管
-ctier=[A-Z] url 302 ctier=A
-^https://[\s\S]*\.googlevideo\.com/.*&(oad|ctier) url reject-200
-
-(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) url 302 $1$2$3
-^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad url reject
-
-^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v\d\/player\/ad_break url reject
-^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads url reject
-^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) url reject
-^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext url reject
